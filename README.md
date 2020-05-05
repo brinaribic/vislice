@@ -1,5 +1,5 @@
 # vislice
 
-Ivan Vidav
+Janez Janša
 Josip Plemelj
 Jurij Vega
