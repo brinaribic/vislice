@@ -25,7 +25,7 @@ class Igra:
         return len(self.napacne_crke())
 
     def poraz(self):
-        return self.stevilo_napak() > STEVILO_DOVOLJENIH_NAPAK
+        return self.stevilo_napak() >= STEVILO_DOVOLJENIH_NAPAK
     
     def zmaga(self):
         #return set(self.geslo) == set(self.pravilne_crke())
