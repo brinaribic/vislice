@@ -39,7 +39,7 @@ class Igra:
     def pravilni_del_gesla(self):
         s = ''
         for crka in self.geslo:
-            s += crka if crka in self.crke else '_'
+            s += crka if crka in self.crke else '_ '
         return s
 
     def nepravilni_ugibi(self):
