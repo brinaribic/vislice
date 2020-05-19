@@ -16,7 +16,9 @@
 
   Nepravilni ugibi: <b> {{ igra.nepravilni_ugibi() }} </b> <br>
 
-  Stopnja obešenosti: <b> {{ igra.stevilo_napak() }} </b>
+  Stopnja obešenosti: <b> {{ igra.stevilo_napak() }} </b> <br>
+
+   <img src="/img/{{ igra.stevilo_napak() }}.jpg" alt="obesanje">
 
   % if stanje == model.ZMAGA:
 
@@ -39,7 +41,7 @@
   % else:
 
   <form action="/igra/{{id_igre}}/" method="post">
-    Črka: <input type="text" name ="crka">
+    Črka: <input type="text" name ="crka" maxlength="1">
     <button type="submit">Ugibaj</button>
   </form>
 
