@@ -14,13 +14,13 @@
   
   <h2> {{ igra.pravilni_del_gesla() }} </h2>
 
-  Nepravilni ugibi: <b> {{ igra.nepravilni_ugibi() }} </b>
+  Nepravilni ugibi: <b> {{ igra.nepravilni_ugibi() }} </b> <br>
 
   Stopnja obešenosti: <b> {{ igra.stevilo_napak() }} </b>
 
   % if stanje == model.ZMAGA:
 
-  <h3> čestitam. uspelo ti je. </h3>
+  <h3> Čestitam. Uspelo ti je. </h3>
 
   <form action="/igra/" method="post">
     <button type="submit">Nova igra</button>
