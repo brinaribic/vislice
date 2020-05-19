@@ -23,5 +23,8 @@ def ugibaj(id_igre):
     vislice.ugibaj(id_igre, crka)
     bottle.redirect('/igra/{}/'.format(id_igre))
 
+@bottle.get('/img/<slika>')
+def pokazi_sliko(slika):
+    return bottle.static_file(slika, root='img')
 
 bottle.run(reloader=True, debug=True)
