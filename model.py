@@ -2,6 +2,7 @@ import random
 
 STEVILO_DOVOLJENIH_NAPAK = 10
 
+ZACETEK = 's'
 PRAVILNA_CRKA = '+'
 PONOVLJENA_CRKA = 'o' 
 NAPACNA_CRKA = '-'
@@ -68,7 +69,27 @@ def nova_igra():
     beseda = random.choice(bazen_besed)
     return Igra(beseda)
 
-    
+class Vislice:
+    def __init__(self):
+        self.igre = {}
+
+    def prost_id_igre(self):
+        if len(self.igre) == 0:
+            return 0
+        else:
+            return max(self.igre.keys()) + 1
+
+    def nova_igra(self):
+        id_igre = self.prost_id_igre()
+        igra = nova_igra()
+        self.igre[id_igre] = (igra, ZACETEK)
+        return id_igre
+
+    def ugibaj(self, id_igre, crka):
+        igra, _ = self.igre[id_igre] #stanje = _ ker tega ne bomo nikoli uporabli
+        stanje = igra.ugibaj(crka) #novo stanje
+        self.igre[id_igre] = (igra, stanje)
+
 
 
 
