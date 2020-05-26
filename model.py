@@ -67,7 +67,7 @@ class Igra:
 
 bazen_besed = []
 for beseda in open(BESEDE, encoding='utf-8'):
-    self.bazen_besed.append(beseda.strip().upper())
+    bazen_besed.append(beseda.strip().upper())
 
 def nova_igra():
     beseda = random.choice(bazen_besed)
