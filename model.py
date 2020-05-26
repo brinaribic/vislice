@@ -1,4 +1,5 @@
 import random
+import json
 
 STEVILO_DOVOLJENIH_NAPAK = 10
 
@@ -10,6 +11,8 @@ NAPACNA_CRKA = '-'
 ZMAGA = 'W'
 PORAZ ='X'
 
+DATOTEKA = 'stanje.json'
+BESEDE = 'besede.txt'
 class Igra:
 
     def __init__(self, geslo, crke=None):
@@ -61,17 +64,23 @@ class Igra:
                     return PORAZ
                 else:
                     return NAPACNA_CRKA
+
 bazen_besed = []
-for beseda in open('besede.txt', encoding='utf-8'):
-    bazen_besed.append(beseda.strip().upper())
+for beseda in open(BESEDE, encoding='utf-8'):
+    self.bazen_besed.append(beseda.strip().upper())
 
 def nova_igra():
     beseda = random.choice(bazen_besed)
     return Igra(beseda)
 
 class Vislice:
-    def __init__(self):
+    def __init__(self, datoteka_s_stanjem, datoteka_z_besedami):
         self.igre = {}
+        self.bazen_besed = []
+        for beseda in open(datoteka_z_besedami, encoding='utf-8'):
+            self.bazen_besed.append(beseda.strip().upper())
+        self.datoteka_s_stanjem = datoteka_s_stanjem
+        self.nalozi_igre_iz_datoteke()
 
     def prost_id_igre(self):
         if len(self.igre) == 0:
@@ -81,15 +90,28 @@ class Vislice:
 
     def nova_igra(self):
         id_igre = self.prost_id_igre()
-        igra = nova_igra()
+        igra = Igra(random.choice(self.bazen_besed))
         self.igre[id_igre] = (igra, ZACETEK)
+        self.zapisi_igre_v_datoteke()
         return id_igre
 
     def ugibaj(self, id_igre, crka):
         igra, _ = self.igre[id_igre] #stanje = _ ker tega ne bomo nikoli uporabli
         stanje = igra.ugibaj(crka) #novo stanje
         self.igre[id_igre] = (igra, stanje)
+        self.zapisi_igre_v_datoteke()
 
+    def nalozi_igre_iz_datoteke(self):
+        with open(self.datoteka_s_stanjem, encoding='utf-8') as f:
+            igre = json.load(f) #slovar, ki vsebuje podatke o vseh igrah
+            self.igre = {int(id_igre): (Igra(geslo, crke), stanje)for id_igre, (geslo, crke, stanje) in igre.items()}
 
+    def zapisi_igre_v_datoteke(self):
+        with open(self.datoteka_s_stanjem, 'w', encoding='utf-8') as f:
+            igre = {id_igre: (igra.geslo, igra.crke, stanje) for id_igre, (igra, stanje) in self.igre.items()}
+            json.dump(igre, f)
+
+# self.igre = {0: (Igra(geslo, crke), stanje)}
+# igre = {0: (geslo, crke, stanje)}
 
 
