@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<body>
+% rebase('base.tpl')
 
   <h1>Vislice</h1>
 
@@ -17,4 +14,3 @@
   </form>
 </body>
 
-</html>
