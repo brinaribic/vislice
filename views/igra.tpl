@@ -40,7 +40,7 @@
 
   % else:
 
-  <form action="/igra/{{id_igre}}/" method="post">
+  <form action="/igra/{{ id_igre }}/" method="post">
     Črka: <input type="text" name ="crka">
     <button type="submit">Ugibaj</button>
   </form>
